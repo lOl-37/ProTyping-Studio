@@ -75,7 +75,7 @@
             border-radius: 8px;
         }
         #text-box {
-            font-size: 20px;
+            font-size: 19px;
             line-height: 1.8;
             text-align: left;
             background: var(--box-bg);
@@ -83,7 +83,7 @@
             border-radius: 10px;
             margin-bottom: 20px;
             min-height: 120px;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             letter-spacing: 0.5px;
             user-select: none;
@@ -137,7 +137,7 @@
             background: #38a169;
         }
         .card {
-            main-top: 25px;
+            margin-top: 25px;
             background: #f8fafc;
             padding: 15px;
             border-radius: 10px;
@@ -176,15 +176,15 @@
             <option value="en">English</option>
         </select>
         <select id="topic-select" onchange="generateNewSession()">
-            <option value="school">Maktab / Ta'lim</option>
+            <option value="school">Maktab va Ta'lim</option>
             <option value="sport">Sport</option>
             <option value="math">Matematika</option>
             <option value="life">Hayotiy</option>
         </select>
         <select id="size-select" onchange="generateNewSession()">
-            <option value="25">25 so'z</option>
-            <option value="50" selected>50 so'z</option>
-            <option value="100">100 so'z</option>
+            <option value="short">Qisqa</option>
+            <option value="medium" selected>O'rta</option>
+            <option value="long">Uzun</option>
         </select>
     </div>
 
@@ -224,67 +224,58 @@
     const database = {
         uz: {
             school: [
-                "maktabda har kuni qiziqarli darslar bo'lib o'tadi",
-                "o'quvchilar ustozlar bergan vazifalarni o'z vaqtida bajarishadi",
-                "kutubxonada ko'plab foydali kitoblar va ilmiy qo'llanmalar mavjud",
-                "imtihon vaqtida har bir talaba o'z bilimini to'liq ko'rsatishga harakat qiladi",
-                "kompyuter sinfida zamonaviy texnologiyalar yordamida dasturlash o'rganiladi"
+                "Maktabda har kuni qiziqarli darslar bo'lib o'tadi va o'quvchilar yangi bilimlar olishadi.",
+                "Ustozlarimiz bizga zamonaviy fanlar, kompyuter texnologiyalari va dasturlash asoslarini o'rgatishadi.",
+                "Kutubxonada ko'plab foydali kitoblar, ilmiy qo'llanmalar va adabiyotlar mavjud bo'lib, ulardan hamma foydalanishi mumkin."
             ],
             sport: [
-                "futbol jamoasi stadionda navbatdagi g'alaba uchun maydonga tushdi",
-                "sportchi har kuni ertalab yugurish mashqlarini bajarib rekord o'rnatmoqda",
-                "musobaqa yakunida g'oliblarga maxsus kubok va medallar topshirildi",
-                "tajribali murabbiy o'yinchilarga to'pni uzatish va himoyalanish sirlarini o'rgatdi"
+                "Futbol jamoasi stadionda navbatdagi muhim g'alaba uchun astoydil kurash olib bormoqda.",
+                "Sportchi har kuni ertalab yugurish mashqlarini bajarib, o'zining jismoniy holatini yaxshilab boradi.",
+                "Musobaqa yakunida barcha g'oliblarga maxsus kuboklar va qimmatbaho medallar tantanali ravishda topshirildi."
             ],
             math: [
-                "matematika fanida murakkab tenglamalarni yechish mantiqiy fikrlashni rivojlantiradi",
-                "kalkulyator yordamida sonlarning ko'paytirish va bo'lish amallari tez bajariladi",
-                "geometriya darsida kvadrat va to'g'ri burchakli shakllarning xossalari o'rganiladi"
+                "Matematika fanida murakkab tenglamalarni yechish va misollar bajarish mantiqiy fikrlashni kuchaytiradi.",
+                "Kalkulyator yordamida sonlarning ko'paytirish, bo'lish hamda foiz hisoblash amallari juda tez bajariladi."
             ],
             life: [
-                "har bir inson o'z oldiga aniq maqsad qo'yib uni amalga oshirishi muhim",
-                "ertalabki nonushta vaqtida oila a'zolari birgalikda rejalarni muhokama qilishadi",
-                "tabiyot go'zalligi va toza havo inson salomatligiga ijobiy ta'sir ko'rsatadi"
+                "Har bir inson o'z oldiga aniq maqsadlar qo'yib, ularga erishish uchun tinimsiz harakat qilishi lozim.",
+                "Tinch va osuda hayot kechirish, tabiat go'zalliklaridan zavqlanish har bir insonga baxt keltiradi."
             ]
         },
         ru: {
             school: [
-                "в школе каждый день проходят интересные и познавательные уроки",
-                "ученики внимательно слушают учителей и выполняют домашние задания",
-                "в библиотеке можно найти много полезных книг и энциклопедий",
-                "на экзамене каждый студент старается показать свои лучшие знания"
+                "В школе каждый день проходят интересные уроки, на которых ученики получают полезные знания.",
+                "Учителя объясняют сложные темы и помогают студентам успешно осваивать современные технологии."
             ],
             sport: [
-                "футбольная команда вышла на поле для важного матча за кубок",
-                "спортсмен ежедневно тренируется на стадионе и бьет новые рекорды",
-                "после упорной борьбы судья объявил победителем сильнейшего игрока"
+                "Футбольная команда вышла на поле стадиона, чтобы побороться за главный кубок турнира.",
+                "Ежедневные тренировки помогают спортсменам улучшать свои результаты и ставить новые рекорды."
             ],
             math: [
-                "на уроках математики школьники учатся решать сложные уравнения",
-                "калькулятор помогает быстро вычислить проценты и квадратные корни"
+                "Решение математических уравнений и логических задач отлично развивает мышление и внимание.",
+                "Современные технологии и калькуляторы позволяют быстро выполнять любые сложные вычисления."
             ],
             life: [
-                "каждый день приносит нам новые возможности для достижения целей",
-                "утро в кругу семьи начинается с вкусного завтрака и хорошего настроения"
+                "Каждый новый день открывает перед нами уникальные возможности для достижения поставленных целей.",
+                "Проведение времени с близкими людьми наполняет нашу жизнь радостью, теплом и гармонией."
             ]
         },
         en: {
             school: [
-                "students attend interesting lessons and study various subjects every day",
-                "the school library has many useful books for reading and learning",
-                "teachers help students to understand difficult topics during classes"
+                "Students attend interesting lessons every day and acquire valuable knowledge for their future career.",
+                "Teachers guide students through complex subjects like computer science, mathematics, and programming."
             ],
             sport: [
-                "the football team played a fantastic match at the main stadium",
-                "every athlete works hard during training to win the championship cup"
+                "The football team played an amazing match at the central stadium to win the championship cup.",
+                "Regular training sessions help every athlete to improve physical strength and achieve great results."
             ],
             math: [
-                "mathematics helps us to solve complex equations and logic problems",
-                "students use calculators to calculate numbers and percentages quickly"
+                "Solving complex mathematical equations and logical problems helps to develop critical thinking.",
+                "Students use modern tools and calculators to calculate numbers and percentages quickly and accurately."
             ],
             life: [
-                "setting clear goals in life leads to great success and happiness",
-                "spending time with family and friends brings joy and peaceful moments"
+                "Setting clear goals in life and working hard every day leads to incredible personal success.",
+                "Enjoying peaceful moments with family and friends brings true happiness and endless positive energy."
             ]
         }
     };
@@ -305,19 +296,20 @@
     function generateNewSession() {
         const lang = document.getElementById("lang-select").value;
         const topic = document.getElementById("topic-select").value;
-        const wordCount = parseInt(document.getElementById("size-select").value);
+        const size = document.getElementById("size-select").value;
 
-        const sentencesPool = database[lang][topic];
-        let chosenSentences = [];
-        
-        while (chosenSentences.join(" ").split(" ").length < wordCount) {
-            let randomSentence = sentencesPool[Math.floor(Math.random() * sentencesPool.length)];
-            chosenSentences.push(randomSentence);
+        const paragraphs = database[lang][topic];
+        let selectedText = "";
+
+        if (size === "short") {
+            selectedText = paragraphs[0];
+        } else if (size === "medium") {
+            selectedText = paragraphs.slice(0, 2).join(" ");
+        } else {
+            selectedText = paragraphs.join(" ");
         }
 
-        let allWords = chosenSentences.join(" ").split(" ");
-        originalText = allWords.slice(0, wordCount).join(" ");
-        
+        originalText = selectedText;
         initText(originalText);
         resetTestState();
     }
