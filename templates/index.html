@@ -83,6 +83,8 @@
             border-radius: 10px;
             margin-bottom: 20px;
             min-height: 120px;
+            max-height: 200px;
+            overflow-y: auto;
             letter-spacing: 0.5px;
             user-select: none;
             word-break: break-word;
@@ -135,7 +137,7 @@
             background: #38a169;
         }
         .card {
-            margin-top: 25px;
+            main-top: 25px;
             background: #f8fafc;
             padding: 15px;
             border-radius: 10px;
@@ -169,8 +171,8 @@
     
     <div class="settings">
         <select id="lang-select" onchange="generateNewSession()">
-            <option value="uz">O'zbekcha</option>
-            <option value="ru" selected>Русский</option>
+            <option value="uz" selected>O'zbekcha</option>
+            <option value="ru">Русский</option>
             <option value="en">English</option>
         </select>
         <select id="topic-select" onchange="generateNewSession()">
@@ -221,22 +223,69 @@
 <script>
     const database = {
         uz: {
-            school: ["maktab", "o'quvchi", "ustoz", "dars", "sinf", "bilim", "kitob", "ta'lim", "fan", "imtihon", "reyting", "kompyuter", "mashq", "kelajak", "direktor", "baho", "parta", "qalam", "taxta", "sinfxona"],
-            sport: ["futbol", "stadion", "gol", "to'p", "komanda", "sportchi", "trener", "chempion", "kubok", "match", "basketbol", "yugurish", "g'alaba", "hakam", "turnir", "rekord", "faoliyat"],
-            math: ["matematika", "raqam", "tenglama", "formula", "geometriya", "kalkulyator", "hisob", "ko'paytirish", "bo'lish", "yigindi", "kvadrat", "foiz", "qiymat", "arifmetika"],
-            life: ["hayot", "vaqt", "uy", "oila", "do'kon", "bozor", "mashina", "telefon", "shahar", "ko'cha", "nonushta", "kechki", "ish", "sayohat", "do'stlik"]
+            school: [
+                "maktabda har kuni qiziqarli darslar bo'lib o'tadi",
+                "o'quvchilar ustozlar bergan vazifalarni o'z vaqtida bajarishadi",
+                "kutubxonada ko'plab foydali kitoblar va ilmiy qo'llanmalar mavjud",
+                "imtihon vaqtida har bir talaba o'z bilimini to'liq ko'rsatishga harakat qiladi",
+                "kompyuter sinfida zamonaviy texnologiyalar yordamida dasturlash o'rganiladi"
+            ],
+            sport: [
+                "futbol jamoasi stadionda navbatdagi g'alaba uchun maydonga tushdi",
+                "sportchi har kuni ertalab yugurish mashqlarini bajarib rekord o'rnatmoqda",
+                "musobaqa yakunida g'oliblarga maxsus kubok va medallar topshirildi",
+                "tajribali murabbiy o'yinchilarga to'pni uzatish va himoyalanish sirlarini o'rgatdi"
+            ],
+            math: [
+                "matematika fanida murakkab tenglamalarni yechish mantiqiy fikrlashni rivojlantiradi",
+                "kalkulyator yordamida sonlarning ko'paytirish va bo'lish amallari tez bajariladi",
+                "geometriya darsida kvadrat va to'g'ri burchakli shakllarning xossalari o'rganiladi"
+            ],
+            life: [
+                "har bir inson o'z oldiga aniq maqsad qo'yib uni amalga oshirishi muhim",
+                "ertalabki nonushta vaqtida oila a'zolari birgalikda rejalarni muhokama qilishadi",
+                "tabiyot go'zalligi va toza havo inson salomatligiga ijobiy ta'sir ko'rsatadi"
+            ]
         },
         ru: {
-            school: ["школа", "ученик", "учитель", "урок", "класс", "знание", "книга", "образование", "предмет", "экзамен", "оценка", "компьютер", "упражнение", "будущее", "директор"],
-            sport: ["футбол", "стадион", "гол", "мяч", "команда", "спортсмен", "тренер", "чемпион", "кубок", "матч", "баскетбол", "бег", "победа", "судья", "турнир"],
-            math: ["математика", "число", "уравнение", "формула", "геометрия", "алгебра", "калькулятор", "счет", "умножение", "деление", "сумма", "квадрат", "процент"],
-            life: ["жизнь", "время", "дом", "семья", "магазин", "рынок", "машина", "телефон", "город", "улица", "завтрак", "работа", "путешествие", "дружба"]
+            school: [
+                "в школе каждый день проходят интересные и познавательные уроки",
+                "ученики внимательно слушают учителей и выполняют домашние задания",
+                "в библиотеке можно найти много полезных книг и энциклопедий",
+                "на экзамене каждый студент старается показать свои лучшие знания"
+            ],
+            sport: [
+                "футбольная команда вышла на поле для важного матча за кубок",
+                "спортсмен ежедневно тренируется на стадионе и бьет новые рекорды",
+                "после упорной борьбы судья объявил победителем сильнейшего игрока"
+            ],
+            math: [
+                "на уроках математики школьники учатся решать сложные уравнения",
+                "калькулятор помогает быстро вычислить проценты и квадратные корни"
+            ],
+            life: [
+                "каждый день приносит нам новые возможности для достижения целей",
+                "утро в кругу семьи начинается с вкусного завтрака и хорошего настроения"
+            ]
         },
         en: {
-            school: ["school", "student", "teacher", "lesson", "class", "knowledge", "book", "education", "subject", "exam", "grade", "computer", "exercise", "future", "director"],
-            sport: ["football", "stadium", "goal", "ball", "team", "athlete", "coach", "champion", "cup", "match", "basketball", "running", "victory", "referee", "tournament"],
-            math: ["mathematics", "number", "equation", "formula", "geometry", "algebra", "calculator", "count", "multiplication", "division", "sum", "square", "percent"],
-            life: ["life", "time", "home", "family", "shop", "market", "car", "phone", "city", "street", "breakfast", "work", "travel", "friendship"]
+            school: [
+                "students attend interesting lessons and study various subjects every day",
+                "the school library has many useful books for reading and learning",
+                "teachers help students to understand difficult topics during classes"
+            ],
+            sport: [
+                "the football team played a fantastic match at the main stadium",
+                "every athlete works hard during training to win the championship cup"
+            ],
+            math: [
+                "mathematics helps us to solve complex equations and logic problems",
+                "students use calculators to calculate numbers and percentages quickly"
+            ],
+            life: [
+                "setting clear goals in life leads to great success and happiness",
+                "spending time with family and friends brings joy and peaceful moments"
+            ]
         }
     };
 
@@ -258,22 +307,17 @@
         const topic = document.getElementById("topic-select").value;
         const wordCount = parseInt(document.getElementById("size-select").value);
 
-        const wordsPool = database[lang][topic];
-        let generatedWords = [];
+        const sentencesPool = database[lang][topic];
+        let chosenSentences = [];
         
-        // Takrorlanishning oldini olib, so'zlarni aralashtirib chiqaramiz
-        while (generatedWords.length < wordCount) {
-            let shuffled = [...wordsPool].sort(() => Math.random() - 0.5);
-            for (let word of shuffled) {
-                if (generatedWords.length < wordCount) {
-                    if (generatedWords.length === 0 || generatedWords[generatedWords.length - 1] !== word) {
-                        generatedWords.push(word);
-                    }
-                }
-            }
+        while (chosenSentences.join(" ").split(" ").length < wordCount) {
+            let randomSentence = sentencesPool[Math.floor(Math.random() * sentencesPool.length)];
+            chosenSentences.push(randomSentence);
         }
+
+        let allWords = chosenSentences.join(" ").split(" ");
+        originalText = allWords.slice(0, wordCount).join(" ");
         
-        originalText = generatedWords.join(" ");
         initText(originalText);
         resetTestState();
     }
