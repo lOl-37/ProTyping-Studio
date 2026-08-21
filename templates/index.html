@@ -2,358 +2,242 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>ProTyping Trainer - Mukammal Klaviatura Trenajeri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProTyping Studio - Professional Tez Yozish Trenajyori</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --success: #22c55e;
-            --danger: #ef4444;
-            --border: #334155;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            min-height: 100vh;
+            align-items: center;
         }
         .container {
-            width: 100%;
-            max-width: 900px;
+            width: 800px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        h2 {
+            color: #4a5568;
             margin-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
+            font-size: 26px;
         }
-        h1 { font-size: 22px; color: var(--primary); margin: 0; }
-        
-        .card {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
+        .buttons {
+            margin-bottom: 25px;
         }
-        
-        .controls-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .control-group label {
-            display: block;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-        }
-        select, button {
-            width: 100%;
-            background: #0f172a;
-            color: var(--text-color);
-            border: 1px solid var(--border);
-            padding: 10px;
-            border-radius: 8px;
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 6px;
             cursor: pointer;
+            border: none;
+            background: #6c5ce7;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
             font-size: 14px;
-            outline: none;
+            transition: background 0.3s;
         }
-        select:focus, button:focus { border-color: var(--primary); }
-        
-        .btn-primary {
-            background: var(--primary);
-            font-weight: bold;
-            transition: background 0.2s;
+        .buttons button:hover {
+            background: #5649c0;
         }
-        .btn-primary:hover { background: var(--primary-hover); }
-
-        #word-display {
-            font-size: 20px;
-            letter-spacing: 1px;
-            line-height: 1.8;
+        .stats {
+            display: flex;
+            justify-content: space-around;
             margin-bottom: 20px;
-            background: #0f172a;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d3748;
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        #text-box {
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: left;
+            background: #edf2f7;
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid var(--border);
-            max-height: 180px;
-            overflow-y: auto;
+            margin-bottom: 20px;
+            min-height: 120px;
+            letter-spacing: 0.5px;
+            user-select: none;
             word-break: break-word;
         }
-        .correct { color: var(--success); }
-        .incorrect { color: var(--danger); background-color: rgba(239, 68, 68, 0.2); }
-        
+        .char {
+            color: #a0aec0;
+        }
+        .char.correct {
+            color: #2f855a;
+            background: #c6f6d5;
+        }
+        .char.incorrect {
+            color: #c53030;
+            background: #fed7d7;
+        }
+        .char.current {
+            border-left: 2px solid #3182ce;
+            animation: blink 1s infinite;
+        }
         input[type="text"] {
             width: 100%;
             padding: 14px;
             font-size: 18px;
-            background: #0f172a;
-            border: 2px solid var(--border);
-            color: var(--text-color);
-            border-radius: 10px;
-            box-sizing: border-box;
-            outline: none;
-            margin-bottom: 20px;
-        }
-        input[type="text"]:focus { border-color: var(--primary); }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            text-align: center;
-        }
-        .stat-box {
-            background: #0f172a;
-            padding: 12px;
+            border: 2px solid #cbd5e0;
             border-radius: 8px;
-            border: 1px solid var(--border);
+            outline: none;
+            transition: border-color 0.3s;
         }
-        .stat-box span { display: block; font-size: 20px; font-weight: bold; color: var(--primary); margin-top: 4px; }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+        input[type="text"]:focus {
+            border-color: #6c5ce7;
         }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            font-size: 14px;
+        .restart-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #48bb78;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
         }
-        th { color: var(--text-muted); }
+        .restart-btn:hover {
+            background: #38a169;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>⚡ ProTyping Studio</h1>
-        <button onclick="generateNewSession()" style="width: auto; padding: 8px 16px;" class="btn-primary">Yangi matn</button>
-    </header>
-
-    <div class="card">
-        <div class="controls-grid">
-            <div class="control-group">
-                <label>Tilni tanlang</label>
-                <select id="lang-select" onchange="generateNewSession()">
-                    <option value="uz">O'zbekcha</option>
-                    <option value="ru">Русский</option>
-                    <option value="en">English</option>
-                </select>
-            </div>
-            <div class="control-group">
-                <label>Mavzu</label>
-                <select id="topic-select" onchange="generateNewSession()">
-                    <option value="school">Maktab va Ta'lim</option>
-                    <option value="it">Dasturlash va IT</option>
-                    <option value="sport">Sport va Futbol</option>
-                    <option value="math">Matematika va Fan</option>
-                    <option value="life">Kundalik Hayot</option>
-                </select>
-            </div>
-            <div class="control-group">
-                <label>Hajmi (So'zlar soni)</label>
-                <select id="size-select" onchange="generateNewSession()">
-                    <option value="20">20 ta so'z (Tezkor)</option>
-                    <option value="50" selected>50 ta so'z (O'rta)</option>
-                    <option value="150">150 ta so'z (Katta)</option>
-                </select>
-            </div>
-        </div>
-
-        <div id="word-display">Matn yuklanmoqda...</div>
-        <input type="text" id="input-field" placeholder="Matnni shu yerga yozishni boshlang..." autofocus>
-
-        <div class="stats-grid">
-            <div class="stat-box">Vaqt <span id="timer">0</span>s</div>
-            <div class="stat-box">Tezlik <span id="wpm">0</span> WPM</div>
-            <div class="stat-box">Xatolar <span id="errors">0</span></div>
-            <div class="stat-box">Aniqlik <span id="accuracy">100</span>%</div>
-        </div>
+    <h2>ProTyping Studio - Trenajyor</h2>
+    
+    <!-- Uzunlikni tanlash tugmalari -->
+    <div class="buttons">
+        <button onclick="changeTextLength(50)">50 ta so'z</button>
+        <button onclick="changeTextLength(100)">100 ta so'z</button>
+        <button onclick="changeTextLength(150)">150 ta so'z</button>
     </div>
 
-    <div class="card">
-        <h3>🏆 Eng yaxshi natijalar reytingi</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Tezlik</th>
-                    <th>Xatolar</th>
-                </tr>
-            </thead>
-            <tbody id="leaderboard-body">
-                <tr><td colspan="3" style="text-align: center; color: var(--text-muted);">Yuklanmoqda...</td></tr>
-            </tbody>
-        </table>
+    <div class="stats">
+        <div>WPM (Tezlik): <span id="wpm">0</span></div>
+        <div>Xatolar: <span id="errors">0</span></div>
+        <div>Vaqt: <span id="timer">0</span>s</div>
+    </div>
+
+    <div id="text-box">Yuklanmoqda...</div>
+    
+    <input type="text" id="input-box" placeholder="Matnni bu yerga yozishni boshlang..." autofocus autocomplete="off">
+    
+    <div>
+        <button class="restart-btn" onclick="resetTest()">Qayta boshlash</button>
     </div>
 </div>
 
 <script>
-    const database = {
-        uz: {
-            school: ["maktab", "o'quvchi", "ustoz", "dars", "sinf", "bilim", "kitob", "ta'lim", "fan", "imtihon", "reyting", "kompyuter", "mashq", "kelajak", "direktor", "baho", "parta", "qalam", "taxta", "sinfxona"],
-            it: ["dasturlash", "kompyuter", "kod", "funksiya", "python", "sayt", "server", "baza", "algoritm", "intellekt", "texnologiya", "ishlanma", "tarmoq", "ilovalar", "dizayn", "telegram", "bot", "editor", "xatolik", "versiya"],
-            sport: ["futbol", "stadion", "gol", "to'p", "komanda", "sportchi", "trener", "chempion", "kubok", "match", "basketbol", "yugurish", "g'alaba", "hakam", "turnir", "rekord", "faoliyat"],
-            math: ["matematika", "raqam", "tenglama", "formula", "geometriya", "algebra", "kalkulyator", "hisob", "ko'paytirish", "bo'lish", "yigindi", "kvadrat", "foiz", "qiymat", "arifmetika"],
-            life: ["hayot", "vaqt", "uy", "oila", "do'kon", "bozor", "mashina", "telefon", "shahar", "ko'cha", "nonushta", "kechki", "ish", "sayohat", "do'stlik"]
-        },
-        ru: {
-            school: ["школа", "ученик", "учитель", "урок", "класс", "знание", "книга", "образование", "предмет", "экзамен", "оценка", "компьютер", "упражнение", "будущее", "директор"],
-            it: ["программирование", "компьютер", "код", "функция", "сайт", "сервер", "база", "алгоритм", "интеллект", "технология", "разработка", "сеть", "приложение"],
-            sport: ["футбол", "стадион", "гол", "мяч", "команда", "спортсмен", "тренер", "чемпион", "кубок", "матч", "баскетбол", "бег", "победа", "судья", "турнир"],
-            math: ["математика", "число", "уравнение", "формула", "геометрия", "алгебра", "калькулятор", "счет", "умножение", "деление", "сумма", "квадрат", "процент"],
-            life: ["жизнь", "время", "дом", "семья", "магазин", "рынок", "машина", "телефон", "город", "улица", "завтрак", "работа", "путешествие", "дружба"]
-        },
-        en: {
-            school: ["school", "student", "teacher", "lesson", "class", "knowledge", "book", "education", "subject", "exam", "grade", "computer", "exercise", "future", "director"],
-            it: ["programming", "computer", "code", "function", "website", "server", "database", "algorithm", "intelligence", "technology", "development", "network", "application"],
-            sport: ["football", "stadium", "goal", "ball", "team", "athlete", "coach", "champion", "cup", "match", "basketball", "running", "victory", "referee", "tournament"],
-            math: ["mathematics", "number", "equation", "formula", "geometry", "algebra", "calculator", "count", "multiplication", "division", "sum", "square", "percent"],
-            life: ["life", "time", "home", "family", "shop", "market", "car", "phone", "city", "street", "breakfast", "work", "travel", "friendship"]
-        }
-    };
-
-    let sampleText = "";
-    const display = document.getElementById("word-display");
-    const input = document.getElementById("input-field");
-    const timerEl = document.getElementById("timer");
-    const wpmEl = document.getElementById("wpm");
-    const errorsEl = document.getElementById("errors");
-    const accuracyEl = document.getElementById("accuracy");
-
+    let originalText = "{{ text }}";
     let timer = null;
     let seconds = 0;
-    let errors = 0;
     let started = false;
+    let errors = 0;
 
-    function generateNewSession() {
-        const lang = document.getElementById("lang-select").value;
-        const topic = document.getElementById("topic-select").value;
-        const wordCount = parseInt(document.getElementById("size-select").value);
+    const textBox = document.getElementById("text-box");
+    const inputBox = document.getElementById("input-box");
+    const wpmDisplay = document.getElementById("wpm");
+    const errorsDisplay = document.getElementById("errors");
+    const timerDisplay = document.getElementById("timer");
 
-        const wordsPool = database[lang][topic];
-        let generatedWords = [];
-        
-        for (let i = 0; i < wordCount; i++) {
-            let randomWord = wordsPool[Math.floor(Math.random() * wordsPool.length)];
-            generatedWords.push(randomWord);
+    function initText(txt) {
+        originalText = txt;
+        textBox.innerHTML = originalText.split("").map(char => `<span class="char">${char}</span>`).join("");
+        if (textBox.children.length > 0) {
+            textBox.children[0].classList.add("current");
         }
-        
-        sampleText = generatedWords.join(" ");
-        initText();
-        
-        input.value = "";
-        input.disabled = false;
-        clearInterval(timer);
-        seconds = 0;
-        errors = 0;
-        started = false;
-        timerEl.innerText = "0";
-        wpmEl.innerText = "0";
-        errorsEl.innerText = "0";
-        accuracyEl.innerText = "100";
     }
 
-    function initText() {
-        display.innerHTML = "";
-        sampleText.split("").forEach(char => {
-            const span = document.createElement("span");
-            span.innerText = char;
-            display.appendChild(span);
-        });
+    async function changeTextLength(count) {
+        let response = await fetch(`/get-text/${count}`);
+        let data = await response.json();
+        resetTest();
+        initText(data.text);
     }
 
-    input.addEventListener("input", () => {
+    inputBox.addEventListener("input", () => {
         if (!started) {
             started = true;
             timer = setInterval(() => {
                 seconds++;
-                timerEl.innerText = seconds;
+                timerDisplay.innerText = seconds;
+                let typedChars = inputBox.value.length;
+                let words = typedChars / 5;
+                let minutes = seconds / 60;
+                if (minutes > 0) {
+                    wpmDisplay.innerText = Math.round(words / minutes);
+                }
             }, 1000);
         }
 
-        const arraySpan = display.querySelectorAll("span");
-        const arrayValue = input.value.split("");
-        let currentErrors = 0;
+        const val = inputBox.value;
+        const charElements = textBox.querySelectorAll(".char");
+        errors = 0;
 
-        arraySpan.forEach((span, index) => {
-            const char = arrayValue[index];
-            if (char == null) {
-                span.classList.remove("correct", "incorrect");
-            } else if (char === span.innerText) {
-                span.classList.add("correct");
-                span.classList.remove("incorrect");
-            } else {
-                span.classList.add("incorrect");
-                span.classList.remove("correct");
-                currentErrors++;
+        charElements.forEach((el, index) => {
+            el.classList.remove("correct", "incorrect", "current");
+            if (index < val.length) {
+                if (val[index] === originalText[index]) {
+                    el.classList.add("correct");
+                } else {
+                    el.classList.add("incorrect");
+                    errors++;
+                }
+            } else if (index === val.length) {
+                el.classList.add("current");
             }
         });
 
-        errors = currentErrors;
-        errorsEl.innerText = errors;
+        errorsDisplay.innerText = errors;
 
-        let totalTyped = input.value.length;
-        if (totalTyped > 0) {
-            let accuracy = Math.max(0, Math.round(((totalTyped - errors) / totalTyped) * 100));
-            accuracyEl.innerText = accuracy;
-        }
-
-        if (seconds > 0) {
-            let wordsTyped = totalTyped / 5;
-            let wpm = Math.round((wordsTyped / seconds) * 60);
-            wpmEl.innerText = wpm;
-        }
-
-        if (input.value.length === sampleText.length) {
+        if (val.length >= originalText.length) {
             clearInterval(timer);
-            input.disabled = true;
-            saveResult(wpmEl.innerText, errors);
+            inputBox.disabled = true;
+            saveScore();
         }
     });
 
-    function saveResult(wpm, errors) {
-        fetch('/save-score', {
+    function resetTest() {
+        clearInterval(timer);
+        seconds = 0;
+        started = false;
+        errors = 0;
+        timerDisplay.innerText = "0";
+        wpmDisplay.innerText = "0";
+        errorsDisplay.innerText = "0";
+        inputBox.value = "";
+        inputBox.disabled = false;
+        initText(originalText);
+        inputBox.focus();
+    }
+
+    async function saveScore() {
+        let wpm = parseInt(wpmDisplay.innerText);
+        await fetch('/save-score', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ wpm: parseInt(wpm), errors: parseInt(errors) })
-        }).then(() => loadLeaderboard());
+            body: JSON.stringify({ wpm: wpm, errors: errors })
+        });
     }
 
-    function loadLeaderboard() {
-        fetch('/get-scores')
-            .then(res => res.json())
-            .then(data => {
-                const tbody = document.getElementById("leaderboard-body");
-                tbody.innerHTML = "";
-                if(data.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">Hali natijalar yo'q</td></tr>`;
-                    return;
-                }
-                data.forEach((item, index) => {
-                    tbody.innerHTML += `<tr><td>${index + 1}</td><td>${item.wpm} WPM</td><td>${item.errors} ta</td></tr>`;
-                });
-            });
-    }
-
-    generateNewSession();
-    loadLeaderboard();
+    // Sahifa yuklanganda ishga tushirish
+    initText(originalText);
 </script>
 
 </body>
