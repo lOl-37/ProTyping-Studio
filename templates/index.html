@@ -11,7 +11,6 @@
             --text-main: #333333;
             --text-muted: #a0aec0;
             --primary: #6c5ce7;
-            --primary-hover: #5649c0;
             --success-bg: #c6f6d5;
             --success-text: #2f855a;
             --error-bg: #fed7d7;
@@ -19,11 +18,7 @@
             --box-bg: #edf2f7;
             --border-color: #cbd5e0;
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg-gradient);
@@ -41,12 +36,7 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        h2 {
-            color: #4a5568;
-            margin-bottom: 20px;
-            font-size: 26px;
-            text-align: center;
-        }
+        h2 { color: #4a5568; margin-bottom: 20px; font-size: 26px; text-align: center; }
         .settings {
             display: flex;
             justify-content: center;
@@ -89,21 +79,10 @@
             user-select: none;
             word-break: break-word;
         }
-        .char {
-            color: var(--text-muted);
-        }
-        .char.correct {
-            color: var(--success-text);
-            background: var(--success-bg);
-        }
-        .char.incorrect {
-            color: var(--error-text);
-            background: var(--error-bg);
-        }
-        .char.current {
-            border-left: 2px solid #3182ce;
-            animation: blink 1s infinite;
-        }
+        .char { color: var(--text-muted); }
+        .char.correct { color: var(--success-text); background: var(--success-bg); }
+        .char.incorrect { color: var(--error-text); background: var(--error-bg); }
+        .char.current { border-left: 2px solid #3182ce; }
         input[type="text"] {
             width: 100%;
             padding: 14px;
@@ -113,15 +92,8 @@
             outline: none;
             transition: border-color 0.3s;
         }
-        input[type="text"]:focus {
-            border-color: var(--primary);
-        }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
+        input[type="text"]:focus { border-color: var(--primary); }
+        .controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
         .restart-btn {
             padding: 10px 25px;
             background: #48bb78;
@@ -133,9 +105,7 @@
             font-weight: bold;
             transition: background 0.3s;
         }
-        .restart-btn:hover {
-            background: #38a169;
-        }
+        .restart-btn:hover { background: #38a169; }
         .card {
             margin-top: 25px;
             background: #f8fafc;
@@ -143,25 +113,10 @@
             border-radius: 10px;
             border: 1px solid #e2e8f0;
         }
-        .card h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #4a5568;
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        th {
-            color: #718096;
-        }
+        .card h3 { font-size: 16px; margin-bottom: 10px; color: #4a5568; text-align: center; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 8px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        th { color: #718096; }
     </style>
 </head>
 <body>
@@ -182,9 +137,9 @@
             <option value="life">Hayotiy</option>
         </select>
         <select id="size-select" onchange="generateNewSession()">
-            <option value="short">Qisqa</option>
-            <option value="medium" selected>O'rta</option>
-            <option value="long">Uzun</option>
+            <option value="short">Qisqa matn</option>
+            <option value="medium" selected>O'rta matn</option>
+            <option value="long">To'liq matn</option>
         </select>
     </div>
 
@@ -224,58 +179,44 @@
     const database = {
         uz: {
             school: [
-                "Maktabda har kuni qiziqarli darslar bo'lib o'tadi va o'quvchilar yangi bilimlar olishadi.",
-                "Ustozlarimiz bizga zamonaviy fanlar, kompyuter texnologiyalari va dasturlash asoslarini o'rgatishadi.",
-                "Kutubxonada ko'plab foydali kitoblar, ilmiy qo'llanmalar va adabiyotlar mavjud bo'lib, ulardan hamma foydalanishi mumkin."
+                "Maktabda har kuni qiziqarli darslar bo'lib o'tadi va o'quvchilar yangi bilimlar olishadi. Ustozlarimiz bizga zamonaviy fanlar, kompyuter texnologiyalari va dasturlash asoslarini o'rgatishadi. Kutubxonada ko'plab foydali kitoblar, ilmiy qo'llanmalar va adabiyotlar mavjud bo'lib, ulardan hamma foydalanishi mumkin."
             ],
             sport: [
-                "Futbol jamoasi stadionda navbatdagi muhim g'alaba uchun astoydil kurash olib bormoqda.",
-                "Sportchi har kuni ertalab yugurish mashqlarini bajarib, o'zining jismoniy holatini yaxshilab boradi.",
-                "Musobaqa yakunida barcha g'oliblarga maxsus kuboklar va qimmatbaho medallar tantanali ravishda topshirildi."
+                "Futbol jamoasi stadionda navbatdagi muhim g'alaba uchun astoydil kurash olib bormoqda. Sportchi har kuni ertalab yugurish mashqlarini bajarib, o'zining jismoniy holatini yaxshilab boradi. Musobaqa yakunida barcha g'oliblarga maxsus kuboklar va qimmatbaho medallar tantanali ravishda topshirildi."
             ],
             math: [
-                "Matematika fanida murakkab tenglamalarni yechish va misollar bajarish mantiqiy fikrlashni kuchaytiradi.",
-                "Kalkulyator yordamida sonlarning ko'paytirish, bo'lish hamda foiz hisoblash amallari juda tez bajariladi."
+                "Matematika fanida murakkab tenglamalarni yechish va misollar bajarish mantiqiy fikrlashni kuchaytiradi. Kalkulyator yordamida sonlarning ko'paytirish, bo'lish hamda foiz hisoblash amallari juda tez bajariladi."
             ],
             life: [
-                "Har bir inson o'z oldiga aniq maqsadlar qo'yib, ularga erishish uchun tinimsiz harakat qilishi lozim.",
-                "Tinch va osuda hayot kechirish, tabiat go'zalliklaridan zavqlanish har bir insonga baxt keltiradi."
+                "Har bir inson o'z oldiga aniq maqsadlar qo'yib, ularga erishish uchun tinimsiz harakat qilishi lozim. Tinch va osuda hayot kechirish, tabiat go'zalliklaridan zavqlanish har bir insonga baxt keltiradi."
             ]
         },
         ru: {
             school: [
-                "В школе каждый день проходят интересные уроки, на которых ученики получают полезные знания.",
-                "Учителя объясняют сложные темы и помогают студентам успешно осваивать современные технологии."
+                "В школе каждый день проходят интересные уроки, на которых ученики получают полезные знания. Учителя объясняют сложные темы и помогают студентам успешно осваивать современные технологии."
             ],
             sport: [
-                "Футбольная команда вышла на поле стадиона, чтобы побороться за главный кубок турнира.",
-                "Ежедневные тренировки помогают спортсменам улучшать свои результаты и ставить новые рекорды."
+                "Футбольная команда вышла на поле стадиона, чтобы побороться за главный кубок турнира. Ежедневные тренировки помогают спортсменам улучшать свои результаты и ставить новые рекорды."
             ],
             math: [
-                "Решение математических уравнений и логических задач отлично развивает мышление и внимание.",
-                "Современные технологии и калькуляторы позволяют быстро выполнять любые сложные вычисления."
+                "Решение математических уравнений и логических задач отлично развивает мышление и внимание. Современные технологии и калькуляторы позволяют быстро выполнять любые сложные вычисления."
             ],
             life: [
-                "Каждый новый день открывает перед нами уникальные возможности для достижения поставленных целей.",
-                "Проведение времени с близкими людьми наполняет нашу жизнь радостью, теплом и гармонией."
+                "Каждый новый день открывает перед нами уникальные возможности для достижения поставленных целей. Проведение времени с близкими людьми наполняет нашу жизнь радостью, теплом и гармонией."
             ]
         },
         en: {
             school: [
-                "Students attend interesting lessons every day and acquire valuable knowledge for their future career.",
-                "Teachers guide students through complex subjects like computer science, mathematics, and programming."
+                "Students attend interesting lessons every day and acquire valuable knowledge for their future career. Teachers guide students through complex subjects like computer science, mathematics, and programming."
             ],
             sport: [
-                "The football team played an amazing match at the central stadium to win the championship cup.",
-                "Regular training sessions help every athlete to improve physical strength and achieve great results."
+                "The football team played an amazing match at the central stadium to win the championship cup. Regular training sessions help every athlete to improve physical strength and achieve great results."
             ],
             math: [
-                "Solving complex mathematical equations and logical problems helps to develop critical thinking.",
-                "Students use modern tools and calculators to calculate numbers and percentages quickly and accurately."
+                "Solving complex mathematical equations and logical problems helps to develop critical thinking. Students use modern tools and calculators to calculate numbers and percentages quickly and accurately."
             ],
             life: [
-                "Setting clear goals in life and working hard every day leads to incredible personal success.",
-                "Enjoying peaceful moments with family and friends brings true happiness and endless positive energy."
+                "Setting clear goals in life and working hard every day leads to incredible personal success. Enjoying peaceful moments with family and friends brings true happiness and endless positive energy."
             ]
         }
     };
@@ -298,18 +239,17 @@
         const topic = document.getElementById("topic-select").value;
         const size = document.getElementById("size-select").value;
 
-        const paragraphs = database[lang][topic];
-        let selectedText = "";
+        let paragraphs = database[lang][topic][0];
+        let words = paragraphs.split(" ");
 
         if (size === "short") {
-            selectedText = paragraphs[0];
+            originalText = words.slice(0, 15).join(" ");
         } else if (size === "medium") {
-            selectedText = paragraphs.slice(0, 2).join(" ");
+            originalText = words.slice(0, 30).join(" ");
         } else {
-            selectedText = paragraphs.join(" ");
+            originalText = paragraphs;
         }
 
-        originalText = selectedText;
         initText(originalText);
         resetTestState();
     }
